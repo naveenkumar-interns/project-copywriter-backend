@@ -357,260 +357,260 @@ if __name__ == '__main__':
     flask_thread = Thread(target=run_flask)
     flask_thread.start()
 
-    # Collect company and product details
-    company_name = input("Enter Company Name: ").strip()
-    company_type = input("Enter Company Type (e.g., eCommerce, SaaS): ").strip()
-    company_description = input("Enter Company Description: ").strip()
-    product_name = input("Enter Product Name: ").strip()
-    product_description = input("Enter Product Description: ").strip()
-    audience = input("Enter Target Audience: ").strip()
-    question = input("Enter Question: ").strip()
+    # # Collect company and product details
+    # company_name = input("Enter Company Name: ").strip()
+    # company_type = input("Enter Company Type (e.g., eCommerce, SaaS): ").strip()
+    # company_description = input("Enter Company Description: ").strip()
+    # product_name = input("Enter Product Name: ").strip()
+    # product_description = input("Enter Product Description: ").strip()
+    # audience = input("Enter Target Audience: ").strip()
+    # question = input("Enter Question: ").strip()
 
-    # Tone selection
-    tone_options = ["Professional", "Casual", "Friendly", "Technical"]
-    print("\nSelect Tone of Voice:")
-    for i, tone in enumerate(tone_options, 1):
-        print(f"{i}. {tone}")
+    # # Tone selection
+    # tone_options = ["Professional", "Casual", "Friendly", "Technical"]
+    # print("\nSelect Tone of Voice:")
+    # for i, tone in enumerate(tone_options, 1):
+    #     print(f"{i}. {tone}")
 
-    try:
-        tone_choice = int(input("\nEnter the number corresponding to the tone of voice: "))
-        tone_of_voice = tone_options[tone_choice - 1] if 1 <= tone_choice <= len(tone_options) else "Professional"
-    except ValueError:
-        tone_of_voice = "Professional"
+    # try:
+    #     tone_choice = int(input("\nEnter the number corresponding to the tone of voice: "))
+    #     tone_of_voice = tone_options[tone_choice - 1] if 1 <= tone_choice <= len(tone_options) else "Professional"
+    # except ValueError:
+    #     tone_of_voice = "Professional"
 
-    # Creativity selection
-    creativity_levels = ["Low", "Normal", "High"]
-    print("\nSelect Creativity Level:")
-    for i, level in enumerate(creativity_levels, 1):
-        print(f"{i}. {level}")
+    # # Creativity selection
+    # creativity_levels = ["Low", "Normal", "High"]
+    # print("\nSelect Creativity Level:")
+    # for i, level in enumerate(creativity_levels, 1):
+    #     print(f"{i}. {level}")
 
-    try:
-        creativity_choice = int(input("\nEnter the number corresponding to the creativity level: "))
-        creativity = creativity_levels[creativity_choice - 1] if 1 <= creativity_choice <= len(creativity_levels) else "Normal"
-    except ValueError:
-        creativity = "Normal"
+    # try:
+    #     creativity_choice = int(input("\nEnter the number corresponding to the creativity level: "))
+    #     creativity = creativity_levels[creativity_choice - 1] if 1 <= creativity_choice <= len(creativity_levels) else "Normal"
+    # except ValueError:
+    #     creativity = "Normal"
 
-    # Section selection
-    print("\nSelect the sections you want to generate (comma-separated):")
-    print("1. Navigation Section")
-    print("2. Hero Section")
-    print("3. How It Works Section")
-    print("4. Features Section")
-    print("5. Testimonial Section")
-    print("6. About Us Section")
-    print("7. Footer Section")
+    # # Section selection
+    # print("\nSelect the sections you want to generate (comma-separated):")
+    # print("1. Navigation Section")
+    # print("2. Hero Section")
+    # print("3. How It Works Section")
+    # print("4. Features Section")
+    # print("5. Testimonial Section")
+    # print("6. About Us Section")
+    # print("7. Footer Section")
 
-    section_choices = input("\nEnter the numbers corresponding to your choices (e.g., 1,2,3,4,5,6,7): ").strip()
-    sections_map = {
-        "1": "navigation",
-        "2": "hero",
-        "3": "howitworks",
-        "4": "features",
-        "5": "testimonials",
-        "6": "about_us",
-        "7": "footer",
-    }
-    selected_sections = [sections_map[num] for num in section_choices.split(",") if num in sections_map]
+    # section_choices = input("\nEnter the numbers corresponding to your choices (e.g., 1,2,3,4,5,6,7): ").strip()
+    # sections_map = {
+    #     "1": "navigation",
+    #     "2": "hero",
+    #     "3": "howitworks",
+    #     "4": "features",
+    #     "5": "testimonials",
+    #     "6": "about_us",
+    #     "7": "footer",
+    # }
+    # selected_sections = [sections_map[num] for num in section_choices.split(",") if num in sections_map]
 
-    if not selected_sections:
-        print("\nInvalid choice. Please select at least one section.")
-        exit()
+    # if not selected_sections:
+    #     print("\nInvalid choice. Please select at least one section.")
+    #     exit()
 
-    # Send data to the Flask route
-    url = "http://127.0.0.1:5000/landing_page"
-    response = requests.post(url, json={
-        "company_name": company_name,
-        "company_type": company_type,
-        "company_description": company_description,
-        "target_audience": audience,
-        "tone_of_voice": tone_of_voice,
-        "selected_sections": selected_sections
-    })
+    # # Send data to the Flask route
+    # url = "http://127.0.0.1:5000/landing_page"
+    # response = requests.post(url, json={
+    #     "company_name": company_name,
+    #     "company_type": company_type,
+    #     "company_description": company_description,
+    #     "target_audience": audience,
+    #     "tone_of_voice": tone_of_voice,
+    #     "selected_sections": selected_sections
+    # })
 
-    print(response.json())  # Print the response from Flask
+    # print(response.json())  # Print the response from Flask
 
-    # Fetch and print the updated details
-    get_response = requests.get(url)
-    print("Updated Landing Page Details:", get_response.json())
+    # # Fetch and print the updated details
+    # get_response = requests.get(url)
+    # print("Updated Landing Page Details:", get_response.json())
     
     
 
-    # API endpoint for sending data to the aboutus_tool route
-    url = "http://127.0.0.1:5000/aboutus_tool"
-    response = requests.post(url, json={
-        "product_name": product_name,
-        "product_description": product_description,
-        "target_audience": audience,
-        "creativity": creativity,
-        "tone_of_voice": tone_of_voice
-    })
+    # # API endpoint for sending data to the aboutus_tool route
+    # url = "http://127.0.0.1:5000/aboutus_tool"
+    # response = requests.post(url, json={
+    #     "product_name": product_name,
+    #     "product_description": product_description,
+    #     "target_audience": audience,
+    #     "creativity": creativity,
+    #     "tone_of_voice": tone_of_voice
+    # })
 
-    # Print the response from Flask
-    print("Response from aboutus_tool:", response.json())
+    # # Print the response from Flask
+    # print("Response from aboutus_tool:", response.json())
 
-    # Fetch and print the updated details using a GET request
-    get_response = requests.get(url)
-    print("Updated About Us Details:", get_response.json())
+    # # Fetch and print the updated details using a GET request
+    # get_response = requests.get(url)
+    # print("Updated About Us Details:", get_response.json())
     
     
-    # API endpoint for sending data to the faq_answer route
-    url = "http://127.0.0.1:5000/faq_answer"
-    response = requests.post(url, json={
-        "product_name": product_name,
-        "product_description": product_description,
-        "target_audience": audience,
-        "question": question,
-        "creativity": creativity
-    })
+    # # API endpoint for sending data to the faq_answer route
+    # url = "http://127.0.0.1:5000/faq_answer"
+    # response = requests.post(url, json={
+    #     "product_name": product_name,
+    #     "product_description": product_description,
+    #     "target_audience": audience,
+    #     "question": question,
+    #     "creativity": creativity
+    # })
 
-    # Print the response from Flask
-    print("Response from faq_answer:", response.json())
+    # # Print the response from Flask
+    # print("Response from faq_answer:", response.json())
 
-    # Fetch and print the updated FAQ answer details using a GET request
-    get_response = requests.get(url)
-    print("Updated FAQ Answer Details:", get_response.json())
+    # # Fetch and print the updated FAQ answer details using a GET request
+    # get_response = requests.get(url)
+    # print("Updated FAQ Answer Details:", get_response.json())
     
     
-    # API endpoint for sending data to the faqs route
-    url = "http://127.0.0.1:5000/faqs"
-    response = requests.post(url, json={
-        "product_name": product_name,
-        "product_description": product_description,
-        "target_audience": audience,
-        "creativity": creativity,
-        "tone_of_voice": tone_of_voice
-    })
+    # # API endpoint for sending data to the faqs route
+    # url = "http://127.0.0.1:5000/faqs"
+    # response = requests.post(url, json={
+    #     "product_name": product_name,
+    #     "product_description": product_description,
+    #     "target_audience": audience,
+    #     "creativity": creativity,
+    #     "tone_of_voice": tone_of_voice
+    # })
 
-    # Print the response from Flask
-    print("Response from faqs:", response.json())
+    # # Print the response from Flask
+    # print("Response from faqs:", response.json())
 
-    # Fetch and print the updated FAQs details using a GET request
-    get_response = requests.get(url)
-    print("Updated FAQs Details:", get_response.json())
+    # # Fetch and print the updated FAQs details using a GET request
+    # get_response = requests.get(url)
+    # print("Updated FAQs Details:", get_response.json())
     
     
-    # API endpoint for sending data to the features route
-    url = "http://127.0.0.1:5000/features"
-    response = requests.post(url, json={
-        "company_name": company_name,
-        "company_description": company_description,
-        "product_name": product_name,
-        "product_description": product_description,
-        "target_audience": audience,
-        "creativity": creativity,
-        "tone_of_voice": tone_of_voice
-    })
+    # # API endpoint for sending data to the features route
+    # url = "http://127.0.0.1:5000/features"
+    # response = requests.post(url, json={
+    #     "company_name": company_name,
+    #     "company_description": company_description,
+    #     "product_name": product_name,
+    #     "product_description": product_description,
+    #     "target_audience": audience,
+    #     "creativity": creativity,
+    #     "tone_of_voice": tone_of_voice
+    # })
 
-    # Print the response from Flask
-    print("Response from features:", response.json())
+    # # Print the response from Flask
+    # print("Response from features:", response.json())
 
-    # Fetch and print the updated details using a GET request
-    get_response = requests.get(url)
-    print("Updated Features Details:", get_response.json())
+    # # Fetch and print the updated details using a GET request
+    # get_response = requests.get(url)
+    # print("Updated Features Details:", get_response.json())
     
     
-    # API endpoint for sending data to the headline route
-    url = "http://127.0.0.1:5000/headline"
-    response = requests.post(url, json={
-        "product_name": product_name,
-        "product_description": product_description,
-        "target_audience": audience,
-        "creativity": creativity,
-        "tone_of_voice": tone_of_voice
-    })
+    # # API endpoint for sending data to the headline route
+    # url = "http://127.0.0.1:5000/headline"
+    # response = requests.post(url, json={
+    #     "product_name": product_name,
+    #     "product_description": product_description,
+    #     "target_audience": audience,
+    #     "creativity": creativity,
+    #     "tone_of_voice": tone_of_voice
+    # })
 
-    # Print the response from Flask
-    print("Response from headline:", response.json())
+    # # Print the response from Flask
+    # print("Response from headline:", response.json())
 
-    # Fetch and print the updated details using a GET request
-    get_response = requests.get(url)
-    print("Updated Headline Details:", get_response.json())
+    # # Fetch and print the updated details using a GET request
+    # get_response = requests.get(url)
+    # print("Updated Headline Details:", get_response.json())
     
     
-    # API endpoint for sending data to the hero route
-    url = "http://127.0.0.1:5000/hero"
-    response = requests.post(url, json={
-        "company_name": company_name,
-        "company_description": company_description,
-        "company_type": company_type,
-        "target_audience": audience,
-        "creativity": creativity,
-        "tone_of_voice": tone_of_voice
-    })
+    # # API endpoint for sending data to the hero route
+    # url = "http://127.0.0.1:5000/hero"
+    # response = requests.post(url, json={
+    #     "company_name": company_name,
+    #     "company_description": company_description,
+    #     "company_type": company_type,
+    #     "target_audience": audience,
+    #     "creativity": creativity,
+    #     "tone_of_voice": tone_of_voice
+    # })
 
-    # Print the response from Flask
-    print("Response from hero:", response.json())
+    # # Print the response from Flask
+    # print("Response from hero:", response.json())
 
-    # Fetch and print the updated details using a GET request
-    get_response = requests.get(url)
-    print("Updated Hero Section Details:", get_response.json())
+    # # Fetch and print the updated details using a GET request
+    # get_response = requests.get(url)
+    # print("Updated Hero Section Details:", get_response.json())
     
     
-    # API endpoint for sending data to the howitworks route
-    url = "http://127.0.0.1:5000/howitworks"
-    response = requests.post(url, json={
-        "product_name": product_name,
-        "product_description": product_description,
-        "target_audience": audience,
-        "creativity": creativity,
-        "tone_of_voice": tone_of_voice
-    })
+    # # API endpoint for sending data to the howitworks route
+    # url = "http://127.0.0.1:5000/howitworks"
+    # response = requests.post(url, json={
+    #     "product_name": product_name,
+    #     "product_description": product_description,
+    #     "target_audience": audience,
+    #     "creativity": creativity,
+    #     "tone_of_voice": tone_of_voice
+    # })
 
-    # Print the response from Flask
-    print("Response from howitworks:", response.json())
+    # # Print the response from Flask
+    # print("Response from howitworks:", response.json())
 
-    # Fetch and print the updated details using a GET request
-    get_response = requests.get(url)
-    print("Updated How It Works Section Details:", get_response.json())
+    # # Fetch and print the updated details using a GET request
+    # get_response = requests.get(url)
+    # print("Updated How It Works Section Details:", get_response.json())
     
     
-    # Send data to the Flask route
-    url = "http://127.0.0.1:5000/navigation"
-    response = requests.post(url, json={
-        "company_name": company_name,
-        "company_type": company_type,
-        "product_name": product_name,
-        "product_description": product_description,
-        "creativity": creativity,
-        "tone_of_voice": tone_of_voice
-    })
+    # # Send data to the Flask route
+    # url = "http://127.0.0.1:5000/navigation"
+    # response = requests.post(url, json={
+    #     "company_name": company_name,
+    #     "company_type": company_type,
+    #     "product_name": product_name,
+    #     "product_description": product_description,
+    #     "creativity": creativity,
+    #     "tone_of_voice": tone_of_voice
+    # })
 
-    print(response.json())  # Print the response from Flask
+    # print(response.json())  # Print the response from Flask
 
-    # Fetch and print the updated details
-    get_response = requests.get(url)
-    print("Updated Navigation Details:", get_response.json())
-
-
-    # Send data to the Flask route
-    url = "http://127.0.0.1:5000/subheader"
-    response = requests.post(url, json={
-        "product_name": product_name,
-        "product_description": product_description,
-        "target_audience": audience,
-        "creativity": creativity,
-        "tone_of_voice": tone_of_voice
-    })
-
-    print(response.json())  # Print the response from Flask
-
-    # Fetch and print the updated details
-    get_response = requests.get(url)
-    print("Updated Subheader Details:", get_response.json())
+    # # Fetch and print the updated details
+    # get_response = requests.get(url)
+    # print("Updated Navigation Details:", get_response.json())
 
 
-    # Send data to the Flask route
-    url = "http://127.0.0.1:5000/testimonial"
-    response = requests.post(url, json={
-        "product_name": product_name,
-        "product_description": product_description,
-        "target_audience": audience,
-        "creativity": creativity,
-        "tone_of_voice": tone_of_voice
-    })
+    # # Send data to the Flask route
+    # url = "http://127.0.0.1:5000/subheader"
+    # response = requests.post(url, json={
+    #     "product_name": product_name,
+    #     "product_description": product_description,
+    #     "target_audience": audience,
+    #     "creativity": creativity,
+    #     "tone_of_voice": tone_of_voice
+    # })
 
-    print(response.json())  # Print the response from Flask
+    # print(response.json())  # Print the response from Flask
 
-    # Fetch and print the updated details
-    get_response = requests.get(url)
-    print("Updated Testimonial Details:", get_response.json())
+    # # Fetch and print the updated details
+    # get_response = requests.get(url)
+    # print("Updated Subheader Details:", get_response.json())
+
+
+    # # Send data to the Flask route
+    # url = "http://127.0.0.1:5000/testimonial"
+    # response = requests.post(url, json={
+    #     "product_name": product_name,
+    #     "product_description": product_description,
+    #     "target_audience": audience,
+    #     "creativity": creativity,
+    #     "tone_of_voice": tone_of_voice
+    # })
+
+    # print(response.json())  # Print the response from Flask
+
+    # # Fetch and print the updated details
+    # get_response = requests.get(url)
+    # print("Updated Testimonial Details:", get_response.json())
