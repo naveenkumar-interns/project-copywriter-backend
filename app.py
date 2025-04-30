@@ -5,7 +5,8 @@ import time
 from litellm.exceptions import RateLimitError
 import traceback
 from flask_cors import CORS
-
+import os
+from threading import Thread
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
@@ -348,12 +349,15 @@ def testimonial():
     return jsonify({"message": "Testimonial section updated", "data": res})
 
 
-if __name__ == '__main__':
-    # Start Flask server in a separate thread
-    from threading import Thread
-    def run_flask():
-        app.run(debug=True, use_reloader=False)
+@app.route('/')
+def home():
+    return 'Flask app is running!'
 
+def run_flask():
+    port = int(os.environ.get('PORT', 5000))  # Use PORT from environment or default to 5000
+    app.run(host='0.0.0.0', port=port, debug=True, use_reloader=False)
+
+if __name__ == '__main__':
     flask_thread = Thread(target=run_flask)
     flask_thread.start()
 
